@@ -1,7 +1,5 @@
 #-hunchentoot(error "defservice.hunchentoot is Hunchentoot-specific code")
 
-(eval-when (eval load compile) (require :hunchentoot))
-
 (defpackage :defservice.hunchentoot
   (:use :defservice :cl :hunchentoot)
   (:export #:hunchentoot-param-reader #:create-context-dispatcher)
