@@ -26,11 +26,11 @@
            (cond (str
                   (multiple-value-bind (value ok) (read-parameter-type type str)
                     (unless ok
-                      (error 'dispatch-failed :status 400
+                      (error 'dispatch-failed :code 400
                              :message (format nil "'~a' is not a valid ~a." str type)))
                     value))
                  (default-p default)
-                 (t (error 'dispatch-failed :status 400
+                 (t (error 'dispatch-failed :code 400
                            :message (format nil "No value given for parameter '~a'." name)))))))))
 
 (defgeneric read-parameter-type (type string)
