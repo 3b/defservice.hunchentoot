@@ -21,7 +21,10 @@
                (>= mismatch (length prefix)))
            (lambda ()
              (handler-case
-                 (dispatch-request context (request-method request) (subseq name mismatch)
+                 (dispatch-request context (request-method request)
+                                   (if mismatch
+                                       (subseq name mismatch)
+                                       "/")
                                    (hunchentoot-param-reader request))
                (dispatch-failed (err)
                  (setf (return-code*) (dispatch-failed-code err)))))))))
