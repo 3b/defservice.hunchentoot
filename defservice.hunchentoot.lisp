@@ -18,7 +18,8 @@
     (let* ((name (script-name request))
            (mismatch (mismatch name prefix :test #'char=)))
       (and (or (null mismatch)
-               (>= mismatch (length prefix)))
+               (and (>= mismatch (length prefix))
+                    (char= (char name mismatch) #\/)))
            (lambda ()
              (handler-case
                  (dispatch-request context (request-method request)
