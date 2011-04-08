@@ -28,7 +28,9 @@
                                        "/")
                                    (hunchentoot-param-reader request))
                (dispatch-failed (err)
-                 (setf (return-code*) (dispatch-failed-code err)))))))))
+                 (setf (return-code*) (dispatch-failed-code err))
+                 (loop for (h . v) in (dispatch-failed-headers err)
+                    do (setf (header-out h) v)))))))))
 
 (defun hunchentoot-param-reader (request)
   (lambda (name type &optional (default nil default-p))
