@@ -9,8 +9,8 @@
 
 (defun create-context-dispatcher (prefix context)
   (unless (and (stringp prefix)
-               (plusp (length prefix))
-               (char/= (char prefix (1- (length prefix))) #\/))
+               (or (zerop (length prefix))
+                   (char/= (char prefix (1- (length prefix))) #\/)))
     (parameter-error "~S must be string that doesn't end with a slash." prefix))
   (unless (symbolp context)
     (parameter-error "~S must be a symbol denoting a context." context))
